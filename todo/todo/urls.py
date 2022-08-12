@@ -18,9 +18,12 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from authapp.views import UsersModelViewSet
+from todoapp.views import ProjectsModelViewSet, NotesModelViewSet
 
 router = DefaultRouter()
-router.register('user', UsersModelViewSet)
+router.register('users', UsersModelViewSet)
+router.register('projects', ProjectsModelViewSet)
+router.register('notes', NotesModelViewSet)
 
 urlpatterns = [
   path('admin/', admin.site.urls),
