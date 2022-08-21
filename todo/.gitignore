@@ -1,7 +1,6 @@
+venv/
 .idea
 .env
 README.md
 .DS_Store
 __pycache__/
-venv/
-.sqlite3
