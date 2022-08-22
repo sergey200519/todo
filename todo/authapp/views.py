@@ -11,10 +11,9 @@ from .models import User
 from .serializers import UsersSerializer
 
 
-
-# class UsersModelViewSet(ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UsersSerializer
-class UsersModelViewSet(ListModelMixin, DestroyModelMixin, RetrieveAPIView, UpdateAPIView, GenericViewSet):
+class UsersModelViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UsersSerializer
+# class UsersModelViewSet(ListModelMixin, DestroyModelMixin, RetrieveAPIView, UpdateAPIView, GenericViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UsersSerializer
