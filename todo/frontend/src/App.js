@@ -98,7 +98,7 @@ class App extends React.Component {
     }
     componentDidMount() {
         this.get_token_from_storage()
-    }
+    } 
 
   render() {
     return (
