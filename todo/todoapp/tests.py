@@ -24,7 +24,7 @@ class TestTodoViewSet(TestCase):
 
     def test_api_client_detail(self):
         client = APIClient()
-        response = client.get(f'{self.url}')
+        response = client.get(f'{self.url}') 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def tearDown(self) -> None:
