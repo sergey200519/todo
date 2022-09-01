@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet, ViewSet, GenericViewSet
 from rest_framework.permissions import AllowAny, BasePermission
 
 from .models import User
-from .serializers import UsersSerializer
+from .serializers import UsersSerializer, UsersCastomSerializer
 
 
 class SuperUserOnly(BasePermission):
@@ -22,6 +22,11 @@ class UsersModelViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UsersSerializer
     permission_classes = [SuperUserOnly]
+
+    def get_serializer_class(self):
+        if self.request.version == "v2":
+            return UsersCastomSerializer
+        return UsersSerializer
 # class UsersModelViewSet(ListModelMixin, DestroyModelMixin, RetrieveAPIView, UpdateAPIView, GenericViewSet):
 #     queryset = User.objects.all()
 #     serializer_class = UsersSerializer

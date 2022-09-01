@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     "authapp",
     "todoapp",
     'corsheaders',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    "drf_yasg"
 ]
 
 MIDDLEWARE = [
@@ -148,5 +149,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning'
 }
