@@ -31,7 +31,7 @@ router.register('projects', ProjectsModelViewSet)
 router.register('notes', NotesModelViewSet)
 
 
-schema_view = get_schema_view(
+schema_view = get_schema_view( 
     openapi.Info(
         title='Todo',
         default_version='v1',
