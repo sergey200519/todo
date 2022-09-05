@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     "todoapp",
     'corsheaders',
     'rest_framework.authtoken',
-    "drf_yasg"
+    "drf_yasg",
+    "graphene_django"
 ]
 
 MIDDLEWARE = [
@@ -151,4 +152,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning'
+}
+
+GRAPHENE = {
+    "SCHEMA": 'todo.schema.schema'
 }

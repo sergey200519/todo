@@ -25,6 +25,8 @@ from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from graphene_django.views import GraphQLView
+
 router = DefaultRouter()
 router.register('users', UsersModelViewSet)
 router.register('projects', ProjectsModelViewSet)
@@ -50,4 +52,5 @@ urlpatterns = [
   path('api-auth/', include('rest_framework.urls')),
   path('api-token-auth/', views.obtain_auth_token),
   path('redoc/', schema_view.with_ui('redoc')),
+  path('graphql/', GraphQLView.as_view(graphiql=True))
 ]
