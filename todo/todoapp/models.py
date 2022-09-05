@@ -5,7 +5,7 @@ from authapp.models import User
 class Project(models.Model):
     name = models.CharField(verbose_name="название проекта", max_length=200)
     url = models.URLField(verbose_name="ссылка на репо", blank=True)
-    users = models.ManyToManyField(User)
+    users = models.ManyToManyField(User) 
 
 
 class Note(models.Model):
