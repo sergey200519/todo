@@ -7,6 +7,7 @@ import TodoList from "./components/Todo"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import LoginForm from "./components/Auth";
+import NoteForm from "./components/noteCreate";
 import NotFound404 from "./components/NotFound404";
 import {
   BrowserRouter,
@@ -92,12 +93,34 @@ class App extends React.Component {
         if (this.is_auth()){
             headers['Authorization'] = 'Token ' + this.state.token
         }
-        console.log(this.is_auth() + "</--------------------------------");
         return headers
 
     }
     componentDidMount() {
         this.get_token_from_storage()
+    }
+
+    deleteTodo(id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/notes/${id}`, {headers}).then(response => {
+            this.load_data()
+        }).catch(error => {
+            console.log(error)
+            this.setState({todo: []})
+        })
+    }
+
+    create_note(text, isActive, project, user) {
+      console.log(text, isActive, project, user);
+      const headers = this.get_headers()
+      const data = {text: text, is_active: isActive, project: project, user: user}
+      console.log(data);
+      axios.post(`http://127.0.0.1:8000/api/notes/`, data, {headers}).then(response => {
+          this.load_data()
+      }).catch(error => {
+          console.log(error)
+          this.setState({notes: []})
+      })
     }
 
   render() {
@@ -110,8 +133,9 @@ class App extends React.Component {
            </li>
            <Routes>
                <Route exact path='/' element={<UserList users={this.state.users}/>} />
+               <Route exact path='/createTodo' element={<NoteForm project={this.state.projects} user={this.state.users} create_note={(text, isActive, project, user) => this.create_note(text, isActive, project, user)}/>} />
                <Route exact path='/products' element={<ProjectList projects={this.state.projects}/>}/>
-               <Route exact path='/todo' element={<TodoList notes={this.state.todo}/>}/>
+               <Route exact path='/todo' element={<TodoList notes={this.state.todo} deleteTodo={(id) => this.deleteTodo(id)}/>}/>
                <Route exact path='/login' element={<LoginForm get_token={(username, password) => this.get_token(username, password)}/>}/>
                <Route path='*' element={<NotFound404 />} />
            </Routes>
