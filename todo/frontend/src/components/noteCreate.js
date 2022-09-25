@@ -54,7 +54,7 @@ class NoteForm extends React.Component {
         for(let i = 0; i < event.target.selectedOptions.length;i++){
             user.push(event.target.selectedOptions.item(i).value)
             console.log(event.target.selectedOptions.item(i).value);
-        }
+        } 
         this.setState(
             {'user': user[0]}
         )
